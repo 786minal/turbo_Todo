@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
+  username: postgres
+  password: postgres
+development:
+  <<: *default
+  database: todo_development
+test:
+  <<: *default
+  database: todo_test
+production:
+  <<: *default
+  host: <%= Rails.application.credentials.dig(:database, :host) %>
+  user: <%= Rails.application.credentials.dig(:database, :username) %>
+  password: <%= Rails.application.credentials.dig(:database, :password) %>
+  database: <%= Rails.application.credentials.dig(:database, :name) %>

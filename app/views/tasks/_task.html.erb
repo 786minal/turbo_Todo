@@ -1,0 +1,14 @@
+<li  class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2", id="<%= dom_id task %>">
+  <div class="d-flex align-items-center">
+  <%= check_box_tag "ids[]", task.id, false, class:"me-2 align-middle bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-5 w-5 rounded checkbox" %>
+    <%= task.description %>
+  </div>
+  <div class="d-flex align-items-center">
+    <%= task.status %>
+  </div>
+  <%= button_to task_path(task),
+            method: :delete, remote: true,
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+                <i class="fa fa-close"></i>
+  <% end %>
+</li>
